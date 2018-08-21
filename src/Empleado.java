@@ -1,8 +1,7 @@
 import java.util.*;
 
-public class Empleado {
+public class Empleado extends Persona {
     // Attributes
-    private final String nombre;
     private double sueldo;
     private Date altaContrato;
     private final int id;
@@ -10,7 +9,7 @@ public class Empleado {
     
     //methods
     public Empleado(String nom, double sue, int agno, int mes, int dia){
-        this.nombre=nom;
+        super(nom);
         this.sueldo = sue;
         GregorianCalendar calendario = new GregorianCalendar(agno,mes-1,dia);
         this.altaContrato = calendario.getTime();
@@ -18,22 +17,21 @@ public class Empleado {
         nextid++;
     }
     
-    public Empleado(String nombre){
-        this(nombre,3000,2000,01,01);
-    }
-    
-    public String dimeNombre(){ //Getter
-        return nombre;
-    }
-    
     public double dimeSueldo(){ //Getter
         return sueldo;
+    }
+    
+    public int dimeId(){
+        return id;
     }
     
     public Date dimeFechaContrato(){ //Getter
         return altaContrato;
     }
-    
+    @Override
+    public String dimeDescripcion(){
+        return "Nombre: "+super.dimeNombre()+", id: "+id+", con sueldo: "+sueldo;
+    }
     public void subeSueldo(double porcentaje){
         double aumento = sueldo*porcentaje/100;
         sueldo+=aumento;
